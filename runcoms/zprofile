@@ -17,9 +17,11 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
+
+bindkey -e
 
 #
 # Language
@@ -34,7 +36,7 @@ fi
 #
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+typeset -gU cdpath fpath mailpath path manpath
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -43,8 +45,16 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-  /usr/local/{bin,sbin}
-  $path
+ /usr/local/{bin,sbin}
+ /usr/local/opt/coreutils/libexec/gnubin
+ /usr/texbin
+ /usr/local/share/john
+ $path
+)
+
+manpath=(
+ /usr/local/opt/coreutils/libexec/gnuman
+ $manpath
 )
 
 #
@@ -54,7 +64,7 @@ path=(
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-F -g -i -M -R -S -w -X -z-4'
+export LESS='-g -i -M -R -S -w -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
@@ -72,3 +82,33 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+## Languages (Python, Ruby, Node, PHP, Java, Android, R)
+
+# Python
+if which pyenv > /dev/null; then eval "$(pyenv init --no-rehash - zsh)"; fi
+if which pyenv > /dev/null; then pyenv virtualenvwrapper; fi
+export WORKON_HOME=~/.envs
+alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew" # pyenv hack https://github.com/yyuu/pyenv/issues/106
+export NLTK_DATA="~/nltk_data"
+
+# Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init --no-rehash - zsh)"; fi
+
+# Java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# launchctl `echo setenv JAVA_HOME $JAVA_HOME`
+
+# Android
+export ANDROID_HOME=/usr/local/opt/android-sdk
+# export ANDROID_SDK_ROOT=ANDROID_HOME/??????
+# launchctl `echo setenv ANDROID_SDK_ROOT $ANDROID_SDK_ROOT`
+
+# R
+if which Rscript > /dev/null; then
+  export R_HOME=/usr/local/opt/r/R.framework/Resources
+  export RSTUDIO_WHICH_R=/usr/local/bin/R
+  # launchctl `echo setenv RSTUDIO_WHICH_R $RSTUDIO_WHICH_R`
+fi
