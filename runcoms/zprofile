@@ -45,6 +45,8 @@ typeset -gU cdpath fpath mailpath path manpath
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+ $HOME/bin
+ $HOME/anaconda3/bin
  /usr/local/{bin,sbin}
  /usr/local/opt/coreutils/libexec/gnubin
  /usr/texbin
@@ -88,10 +90,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 ## Languages (Python, Ruby, Node, PHP, Java, Android, R)
 
 # Python
-if which pyenv > /dev/null; then eval "$(pyenv init --no-rehash - zsh)"; fi
-if which pyenv > /dev/null; then pyenv virtualenvwrapper; fi
-export WORKON_HOME=~/.envs
-alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew" # pyenv hack https://github.com/yyuu/pyenv/issues/106
 export NLTK_DATA="~/nltk_data"
 
 # Ruby
@@ -100,6 +98,15 @@ if which rbenv > /dev/null; then eval "$(rbenv init --no-rehash - zsh)"; fi
 # Java
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 # launchctl `echo setenv JAVA_HOME $JAVA_HOME`
+
+# export CLASSPATH="/Users/johria/stanford_nlp/slf4j-1.7.18/*"
+export CLASSPATH="/Users/johria/stanford_nlp/stanford-ner-2015-12-09/stanford-ner.jar"
+export CLASSPATH="$CLASSPATH:/Users/johria/stanford_nlp/stanford-parser-full-2015-12-09/stanford-parser.jar"
+export CLASSPATH="$CLASSPATH:/Users/johria/stanford_nlp/stanford-postagger-full-2015-12-09/stanford-postagger.jar"
+
+export STANFORD_MODELS="/Users/johria/stanford_nlp/stanford-ner-2015-12-09/classifiers"
+export STANFORD_MODELS="$STANFORD_MODELS:/Users/johria/stanford_nlp/stanford-postagger-full-2015-12-09/models"
+export STANFORD_MODELS="$STANFORD_MODELS:/Users/johria/stanford_nlp/stanford-parser-full-2015-12-09/stanford-parser-3.6.0-models.jar"
 
 # Android
 export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -112,3 +119,9 @@ if which Rscript > /dev/null; then
   export RSTUDIO_WHICH_R=/usr/local/bin/R
   # launchctl `echo setenv RSTUDIO_WHICH_R $RSTUDIO_WHICH_R`
 fi
+
+alias rstudio=~/Applications/RStudio.app/Contents/MacOS/RStudio
+
+# Spark
+export SPARK_HOME="/usr/local/opt/apache-spark/libexec/"
+export PYSPARK_PYTHON="python3.5"

@@ -36,3 +36,5 @@ alias gst='git status'
 #    subl ${*:-${project_file:-.}}
 # }
 # alias subl="project_aware_subl"
+
+source /usr/local/share/zsh/site-functions/_aws
