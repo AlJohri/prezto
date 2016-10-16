@@ -125,3 +125,5 @@ alias rstudio=~/Applications/RStudio.app/Contents/MacOS/RStudio
 # Spark
 export SPARK_HOME="/usr/local/opt/apache-spark/libexec/"
 export PYSPARK_PYTHON="python3.5"
+
+source "/usr/local/bin/virtualenvwrapper.sh"
