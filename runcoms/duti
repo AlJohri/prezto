@@ -8,3 +8,4 @@ org.videolan.vlc .mkv all
 
 com.sublimetext.3 public.plain-text all
 com.sublimetext.3 public.source-code all
+com.sublimetext.3 public.unix-executable all

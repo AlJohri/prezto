@@ -125,3 +125,8 @@ alias rstudio=~/Applications/RStudio.app/Contents/MacOS/RStudio
 # Spark
 export SPARK_HOME="/usr/local/opt/apache-spark/libexec/"
 export PYSPARK_PYTHON="python3.5"
+
+# Homebrew
+
+export HOMEBREW_GITHUB_API_TOKEN="ae870fcbbae7516630c46ccb4fb87bf06575db09"
+
