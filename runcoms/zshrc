@@ -16,9 +16,6 @@ disable r
 
 setopt histignorespace
 
-alias grep="/usr/local/bin/grep $GREP_OPTIONS"
-unset GREP_OPTIONS
-
 alias dog='pygmentize -g'
 eval "$(hub alias -s)"
 alias findf='mdfind -onlyin . -name'

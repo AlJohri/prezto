@@ -19,3 +19,5 @@
 	helper = osxkeychain
 [github]
 	user = AlJohri
+[ghi]
+	token = !security find-internet-password -a aljohri -s github.com -l 'ghi token' -w
